@@ -1,0 +1,21 @@
+
+{% extends 'mainLayout.twig' %}
+{% block content %}
+    
+    <script type="text/javascript" src="{{path("/resources/js/main-page.js")}}"></script>
+    <form id="calculate-form">
+        <input id="input-first-number" class="field" type="text"/>
+        <select id="calculate-operation" class="field">
+            <option value="add">+</option>
+            <option value="sub">-</option>
+            <option value="div">/</option>
+            <option value="mult">*</option>
+            <option value="pow">^</option>
+        </select>
+        <input id="input-second-number" class="field" type="text"/>
+        <div class="field" id="result-holder"></div>
+        <div><input id="calculate-btn" class="field" type="submit" value="Calculate"/></div>
+
+    </form>
+{% endblock %}    
+    
