@@ -62,7 +62,9 @@ public class Main {
                 superList.addAll( grab( new URL( nodes[i].toString() ) ) );
                 break;
             }
-        } catch (IOException | XPatherException ex) {
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (XPatherException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         

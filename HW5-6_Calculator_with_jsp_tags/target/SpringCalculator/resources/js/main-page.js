@@ -51,7 +51,7 @@ function onSubmit(e){
         type : "GET",
         //url : $("#path").attr("value") + "?$operation=" + operation.val() + "&$firstValue=" + firstNumber.val() + "&$secondValue=" + secondNumber.val(),
         
-        url : "http:\/\/localhost:8080\/SpringCalculator\/calculate" + "?operation=" + operation.val() + "&firstValue=" + firstNumber.val() + "&secondValue=" + secondNumber.val(),
+        url : "http:\/\/localhost:8080\/HW5-6_Calculator_with_jsp_tags\/calculate" + "?operation=" + operation.val() + "&firstValue=" + firstNumber.val() + "&secondValue=" + secondNumber.val(),
         dataType : 'json',
         timeout : 10000,
         success : function(data) {
