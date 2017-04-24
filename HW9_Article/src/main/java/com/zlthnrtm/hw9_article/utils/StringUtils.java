@@ -12,6 +12,9 @@ package com.zlthnrtm.hw9_article.utils;
 public class StringUtils {
     
     public static String killHtmlAndSpaces(String str){
+        if (str == null) {
+            return "";
+        }
         return str.replace("<p>", "")
                 .replace("</p>", "")
                 .replace("<br>", "")
