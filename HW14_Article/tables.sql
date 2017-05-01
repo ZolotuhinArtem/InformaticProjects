@@ -1,0 +1,15 @@
+
+CREATE TABLE articles(
+id BIGSERIAL PRIMARY KEY,
+slug VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE texts(
+id BIGSERIAL PRIMARY KEY,
+language VARCHAR(32) NOT NULL,
+head VARCHAR(256),
+body TEXT,
+article_id BIGINT,
+CONSTRAINT fk_texts_articles FOREIGN KEY (article_id) REFERENCES articles (id)
+ON DELETE CASCADE ON UPDATE CASCADE
+);
