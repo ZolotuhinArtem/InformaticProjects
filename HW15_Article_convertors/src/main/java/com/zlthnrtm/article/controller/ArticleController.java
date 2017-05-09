@@ -77,27 +77,27 @@ public class ArticleController {
     @RequestMapping(value = "/edit/{slug}", method = RequestMethod.POST)
     public String editPost(@PathVariable String slug, 
             RedirectAttributes redirectAttributes,
-            @Valid @ModelAttribute("articleForm") ArticleForm articleForm,
+            @Valid @ModelAttribute("articleForm") Article article,
             BindingResult result,
             ModelMap map){
         
-        return add(redirectAttributes, articleForm, result, map);
+        return add(redirectAttributes, article, result, map);
     }
     
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(
             RedirectAttributes redirectAttributes,
-            @Valid @ModelAttribute("articleForm") ArticleForm articleForm,
+            @Valid @ModelAttribute("articleForm") Article article,
             BindingResult result,
             ModelMap map
     ){
         
         map.put("languages", languageService.getLanguages());
         if (result.hasErrors()) {
-            System.out.println("###################################" + articleForm.toString());
+            System.out.println("###################################" + article.toString());
             return "article_form";
         } else {
-            Article article = (Article) universalConvertor.convert(articleForm, TypeDescriptor.valueOf(ArticleForm.class), TypeDescriptor.valueOf(Article.class));
+            //Article article = (Article) universalConvertor.convert(articleForm, TypeDescriptor.valueOf(ArticleForm.class), TypeDescriptor.valueOf(Article.class));
             System.out.println("###################################" + article.toString());
             try {
                 articleService.save(article);
