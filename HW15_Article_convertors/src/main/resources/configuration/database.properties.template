@@ -1,0 +1,17 @@
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+
+driver=org.postgresql.Driver
+url=jdbc:postgresql://localhost:5432/main
+name=user
+password=123456
+table.articles.name=articles
+
+
+#Hibernate Configuration:
+hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+hibernate.show_sql=true
+entitymanager.packages.to.scan=com.zlthnrtm.hw9_article.model
+hibernate.hbm2ddl.auto =update
+hibernate.enable_lazy_load_no_trans=true

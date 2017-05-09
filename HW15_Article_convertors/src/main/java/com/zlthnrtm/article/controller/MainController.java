@@ -7,6 +7,7 @@ package com.zlthnrtm.article.controller;
 
 import com.zlthnrtm.article.model.Article;
 import com.zlthnrtm.article.model.ArticleLocalizated;
+import com.zlthnrtm.article.model.Language;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,14 +16,11 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.zlthnrtm.article.repository.ArticlesRepository;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.zlthnrtm.article.service.ArticleLocalizator;
 import com.zlthnrtm.article.service.ArticleService;
+import com.zlthnrtm.article.service.LanguageService;
 import com.zlthnrtm.article.service.exception.ArticleFindException;
 import org.springframework.context.support.MessageSourceAccessor;
 
@@ -45,14 +43,17 @@ public class MainController {
     private ArticleService articleService;
     
     @Autowired
+    private LanguageService languageService;
+    
+    @Autowired
     private MessageSourceAccessor msa;
     
     @RequestMapping("/")
     public String mainPage(@RequestParam(name = "page",
             defaultValue = "1",
             required = false) String paramPage, ModelMap map){
-        
-        
+        map.put("languages", languageService.getLanguages());
+        Language lang = languageService.getByLocale(LocaleContextHolder.getLocale());
         try {
             
             
@@ -74,9 +75,10 @@ public class MainController {
             }
             
             
-            List<ArticleLocalizated> articles = articleService.getByPageLocalizated(page, itemsOnPage, LocaleContextHolder.getLocale());
+            //List<Article> articles = articleService.getByPageLocalizated(page, itemsOnPage, lang);
+            List<Article> articles = articleService.getByPage(page, itemsOnPage);
             
-            map.put("page_count", articleService.getPageConutLocalizated(itemsOnPage, LocaleContextHolder.getLocale()));
+            map.put("page_count", articleService.getPageCount(itemsOnPage));
             map.put("page", page);
             
             map.put("articles", articles);
